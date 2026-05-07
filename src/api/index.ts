@@ -9,6 +9,7 @@ import type { CricketPlayer, ValidationResult } from '../types';
 
 function satisfiesCategory(player: CricketPlayer, categoryId: string): boolean {
   switch (categoryId) {
+    // ── International teams ────────────────────────────────────────────────
     case 'india':          return player.teams.includes('India');
     case 'australia':      return player.teams.includes('Australia');
     case 'england':        return player.teams.includes('England');
@@ -17,15 +18,29 @@ function satisfiesCategory(player: CricketPlayer, categoryId: string): boolean {
     case 'south-africa':   return player.teams.includes('South Africa');
     case 'new-zealand':    return player.teams.includes('New Zealand');
     case 'sri-lanka':      return player.teams.includes('Sri Lanka');
-    case '7k-test-runs':   return player.testRuns >= 7000;
-    case '10k-test-runs':  return player.testRuns >= 10000;
-    case '300-intl-wickets':
-      return (player.testWickets + player.odiWickets + player.t20iWickets) >= 300;
-    case '10-test-centuries': return player.testCenturies >= 10;
-    case 'national-captain':  return player.captainedNational;
-    case 'allrounder':        return player.isAllrounder;
-    case 'ipl-player':        return player.iplTeams.length > 0;
-    case 'world-cup-winner':  return player.worldCupWins.length > 0;
+
+    // ── IPL franchises ─────────────────────────────────────────────────────
+    case 'ipl-mi':   return player.iplTeams.includes('Mumbai Indians');
+    case 'ipl-csk':  return player.iplTeams.includes('Chennai Super Kings');
+    case 'ipl-rcb':  return player.iplTeams.includes('Royal Challengers Bangalore');
+    case 'ipl-kkr':  return player.iplTeams.includes('Kolkata Knight Riders');
+    case 'ipl-dc':   return player.iplTeams.includes('Delhi Capitals');
+    case 'ipl-rr':   return player.iplTeams.includes('Rajasthan Royals');
+    case 'ipl-pbks': return player.iplTeams.includes('Punjab Kings');
+    case 'ipl-srh':  return player.iplTeams.includes('Sunrisers Hyderabad');
+    case 'ipl-lsg':  return player.iplTeams.includes('Lucknow Super Giants');
+    case 'ipl-gt':   return player.iplTeams.includes('Gujarat Titans');
+
+    // ── TODO: re-enable when career stats data is available ────────────────
+    // case '7k-test-runs':        return player.testRuns >= 7000;
+    // case '10k-test-runs':       return player.testRuns >= 10000;
+    // case '300-intl-wickets':    return (player.testWickets + player.odiWickets + player.t20iWickets) >= 300;
+    // case '10-test-centuries':   return player.testCenturies >= 10;
+    // case 'national-captain':    return player.captainedNational;
+    // case 'allrounder':          return player.isAllrounder;
+    // case 'ipl-player':          return player.iplTeams.length > 0;
+    // case 'world-cup-winner':    return player.worldCupWins.length > 0;
+
     default: return false;
   }
 }

@@ -10,13 +10,6 @@ interface Props {
   onCancel: () => void;
 }
 
-function TeamFlag(team: string) {
-  const flags: Record<string, string> = {
-    India: '🇮🇳', Australia: '🇦🇺', England: '🏴', Pakistan: '🇵🇰',
-    'West Indies': '🏝️', 'South Africa': '🇿🇦', 'New Zealand': '🇳🇿', 'Sri Lanka': '🇱🇰',
-  };
-  return flags[team] ?? '🏏';
-}
 
 type Status = 'idle' | 'searching' | 'success' | 'error';
 
@@ -148,12 +141,9 @@ export function PlayerSearch({ rowCategory, colCategory, isSteal, onSubmit, onCa
                   className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition
                     ${selectedIdx === i ? 'bg-pitch-light' : 'bg-pitch-mid hover:bg-pitch-light'}`}
                 >
-                  <span className="text-xl">{TeamFlag(p.teams[0])}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-cream text-sm font-semibold truncate">{p.name}</p>
-                    <p className="text-cream/40 text-xs">{p.teams.join(', ')}</p>
                   </div>
-                  {p.isAllrounder && <span className="text-gold text-xs">⭐ All-Rndr</span>}
                 </button>
               </li>
             ))}
